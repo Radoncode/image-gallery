@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import logo from './gallery-image-logo.svg';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container-is-widescreen'>
+      <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <a href="https://bulma.io">
+            <img src={logo} alt="logo  gallery" width="112" height="112" />
+          </a>
+        </div> 
+      </nav>
+      <div className="columns">
+        <div className="column">
+        <div className="card">
+        <p>ici image</p>
+      </div>
+        </div>
+        <div className="column">
+          Second column
+        </div>
+        <div className="column">
+          Third column
+        </div>
+        <div className="column">
+          Fourth column
+        </div>
+      </div>
     </div>
   );
 }
