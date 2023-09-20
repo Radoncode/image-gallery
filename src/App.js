@@ -9,27 +9,31 @@ function App() {
   const [ formData, setFormData ] = useState('');
   const [images, setImages] = useState([]);
 
-
-
-    console.log(images);  
-    const onChangeHandler = (event) => {
-    const querySearch = event.target.value;
-    setSearch(querySearch);
-    
+   
+  const onChangeHandler = (event) => {
+  const querySearch = event.target.value;
+  setSearch(querySearch);
   }
   
-  // firstly I fetch the images according to the query, secondly I empty the query
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
-    //console.log(search)
-    setFormData(search);
-    setSearch('');
+  //when formData is updated , I start the useEffect function
+  useEffect(() => {
 
-    const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${formData}&client_id=7JuVGIWoo9CP4LANK_gcp0FFVY06RrsAj-XK6QXNGYk`);
-    const images = await response.json();
-    const datas = images.results;
-    setImages(datas)
-}
+    const fetchImages =  async () => {
+      const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${formData}&client_id=7JuVGIWoo9CP4LANK_gcp0FFVY06RrsAj-XK6QXNGYk`);
+      const images = await response.json();
+      const datas = images.results;
+      setImages(datas)
+    }
+    fetchImages();
+
+  }, [formData])
+
+
+  const onSubmitHandler =  (event) => {
+    event.preventDefault();
+    setFormData(search);
+    setSearch('');  
+  }
 
   
 
@@ -43,7 +47,7 @@ function App() {
       <form className='columns is-centered' onSubmit={onSubmitHandler}>
           <div className="field is-grouped mt-6">
               <p className="control is-expanded">
-                <input className="input" type="text" placeholder="Find a repository" onChange={onChangeHandler} value={search}/>
+                <input className="input" type="text" placeholder="Find a photo" onChange={onChangeHandler} value={search}/>
               </p>
               <p className="control">
                 <button className="button is-primary">search</button>
@@ -54,7 +58,6 @@ function App() {
       {
         images && images.map((image) => <Picture key={image.id} picture={image.urls.small}/>)
       }
-        <Picture />
       </div>
     </div>
   );
