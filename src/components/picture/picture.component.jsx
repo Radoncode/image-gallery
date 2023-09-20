@@ -1,11 +1,18 @@
 
-const Picture = (props) => {
+const Picture = ({picture, onZoom}) => {
     
+
+    const onZoomImageHandler = (picture) => onZoom(picture);
+
     return (
         <div className="column is-3">
           <div className="card">
             <div className='card-image'>
-              <img src={props.picture}  alt={props.picture ? props.picture : ''} />
+              <img 
+                src={picture}  
+                alt={picture ? picture : ''} 
+                onClick={() => onZoomImageHandler(picture)} 
+                style={{ cursor: "pointer"}} />
             </div>
           </div>
         </div>

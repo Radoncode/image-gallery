@@ -9,6 +9,10 @@ function App() {
   const [ formData, setFormData ] = useState('');
   const [images, setImages] = useState([]);
 
+  const [selectedPicture, setSelectedPicture] = useState('');
+  const [openModal, setOpenModal] = useState(false);
+
+
    
   const onChangeHandler = (event) => {
   const querySearch = event.target.value;
@@ -35,6 +39,10 @@ function App() {
     setSearch('');  
   }
 
+  const onZoom = (picture) => {
+    console.log(picture)
+  }
+
   
 
   return (
@@ -56,10 +64,27 @@ function App() {
       </form>
       <div className="columns is-multiline is-mobile">     
       {
-        images && images.map((image) => <Picture key={image.id} picture={image.urls.small}/>)
+        images && images.map(
+          (image) => <Picture 
+                        key={image.id} 
+                        picture={image.urls.small} 
+                        onZoom={onZoom}
+                      />)
       }
       </div>
-    </div>
+      <div>
+        <p>salut</p>
+      </div>
+      <div className={`modal ${openModal ? 'is-active' : ''}`}>
+        <div className="modal-background"></div>
+          <div className="modal-content">
+            <p className="image is-4by3">
+              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="" />
+            </p>
+          </div>
+          <button className="modal-close is-large" aria-label="close">OUVRIR MODAL</button>
+        </div>
+      </div>
   );
 }
 
