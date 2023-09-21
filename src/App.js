@@ -40,7 +40,13 @@ function App() {
   }
 
   const onZoom = (picture) => {
-    console.log(picture)
+    setSelectedPicture(picture);
+    setOpenModal(true);
+  }
+
+  const inZoom = () => {
+    setSelectedPicture('');
+    setOpenModal(false);
   }
 
   
@@ -72,17 +78,13 @@ function App() {
                       />)
       }
       </div>
-      <div>
-        <p>salut</p>
-      </div>
-      <div className={`modal ${openModal ? 'is-active' : ''}`}>
+      <div className={`modal ${openModal ? 'is-active' : ''}`} onClick={inZoom}>
         <div className="modal-background"></div>
           <div className="modal-content">
             <p className="image is-4by3">
-              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="" />
+              <img src={selectedPicture} alt="" />
             </p>
           </div>
-          <button className="modal-close is-large" aria-label="close">OUVRIR MODAL</button>
         </div>
       </div>
   );
