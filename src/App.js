@@ -48,6 +48,20 @@ function App() {
     setSelectedPicture('');
     setOpenModal(false);
   }
+  
+  // create new array with only the Urls , I retrieve the index of the picture using useState 
+  // for changing the state according to the new index
+  const onMoveLeft = (picture) => {
+    const imagesUrls = images.map(image => image.urls.small);
+    const indexUrlPicture = imagesUrls.indexOf(picture);
+    setSelectedPicture(imagesUrls[indexUrlPicture + 1]);
+  }
+
+  const onMoveRight = (picture) => {
+    const imagesUrls = images.map(image => image.urls.small);
+    const indexUrlPicture = imagesUrls.indexOf(picture);
+    setSelectedPicture(imagesUrls[indexUrlPicture - 1]);
+  }
 
   
 
@@ -78,12 +92,12 @@ function App() {
                       />)
       }
       </div>
-      <div className={`modal ${openModal ? 'is-active' : ''}`} onClick={inZoom}>
+      <div className={`modal ${openModal ? 'is-active' : ''}`} >
         <div className="modal-background"></div>
-          <div className="modal-content">
-            <p className="image is-4by3">
-              <img src={selectedPicture} alt="" />
-            </p>
+          <div className="modal-content slide">
+              <div className="arrow left" onClick={() => onMoveLeft(selectedPicture)} />
+              <img className='image' src={selectedPicture} alt="" onClick={inZoom}/>
+              <div className="arrow right" onClick={() => onMoveRight(selectedPicture)}/>
           </div>
         </div>
       </div>

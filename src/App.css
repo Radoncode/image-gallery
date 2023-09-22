@@ -38,3 +38,37 @@
     transform: rotate(360deg);
   }
 }
+
+.slide {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.image {
+  display: inline-block;
+  padding: 0 20px;
+  cursor: pointer;
+}
+.arrow {
+  position:absolute;
+  border: solid grey;
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  padding: 11px;
+  cursor: pointer;
+}
+
+.right {
+  top: 50%;
+  left: 78px;
+  transform: rotate(-223deg);
+  -webkit-transform: rotate(-223deg);
+}
+
+.left {
+  top: 50%;
+  right: 78px;
+  transform: rotate(314deg);
+  -webkit-transform: rotate(314deg);
+}
