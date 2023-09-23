@@ -55,12 +55,20 @@ function App() {
     const imagesUrls = images.map(image => image.urls.small);
     const indexUrlPicture = imagesUrls.indexOf(picture);
     setSelectedPicture(imagesUrls[indexUrlPicture + 1]);
-  }
+    if(typeof(imagesUrls[indexUrlPicture + 1]) === 'undefined'){
+      setSelectedPicture('');
+      setOpenModal(false);
+    }
 
+  }
   const onMoveRight = (picture) => {
     const imagesUrls = images.map(image => image.urls.small);
     const indexUrlPicture = imagesUrls.indexOf(picture);
     setSelectedPicture(imagesUrls[indexUrlPicture - 1]);
+    if(typeof(imagesUrls[indexUrlPicture - 1]) === 'undefined'){
+      setSelectedPicture('');
+      setOpenModal(false);
+    }
   }
 
   
